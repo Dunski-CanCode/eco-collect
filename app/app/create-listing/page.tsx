@@ -58,6 +58,10 @@ export default function CreateListing() {
 
   const logout = () => signOut(auth).then(() => window.location.assign("/"));
 
+  const handleNavigate = (page: "dashboard" | "messages" | "marketplace") => {
+    router.push(`/${page}`);
+  };
+
   const finalMaterial = material === "Other" ? customMaterial : material;
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -108,6 +112,7 @@ export default function CreateListing() {
           role="collector"
           active="marketplace"
           displayName={userData.email?.split("@")[0]}
+          onNavigate={handleNavigate}
           onDeleteAccount={deleteAccount}
           onLogout={logout}
         />
